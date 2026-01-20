@@ -17,6 +17,7 @@ public class PlayerScript2 : MonoBehaviour
     private AudioManager audioManager;
     private float inputValue;
     private bool hasJumped = false;
+    private bool isRunning = false;
 
 
     //Ladder
@@ -48,15 +49,23 @@ public class PlayerScript2 : MonoBehaviour
                 //inputValue = 1;
                 transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
                 spriteRenderer.flipX = false; //Byt inte riktning på spriten
-
+                isRunning = true;
+                animator.SetBool("isRunning", isRunning);
             }
 
-            if (Input.GetKey(KeyCode.LeftArrow))
+            else if (Input.GetKey(KeyCode.LeftArrow))
             {
                 //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
                 //inputValue = -1;
                 transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
                 spriteRenderer.flipX = true; //Byt riktning på spriten
+                isRunning = true;
+                animator.SetBool("isRunning", isRunning);
+            }
+            else
+            {
+                isRunning = false;
+                animator.SetBool("isRunning", isRunning);
 
             }
 
@@ -184,3 +193,4 @@ public class PlayerScript2 : MonoBehaviour
         }
     }
 }
+//Fixa för mycket speed på player 2
