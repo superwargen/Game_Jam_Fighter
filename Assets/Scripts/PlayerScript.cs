@@ -45,7 +45,7 @@ public class PlayerScript : MonoBehaviour
                 //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
                 //inputValue = 1;
                 transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
-
+                spriteRenderer.flipX = false; //Byt inte riktning på spriten
             }
 
             if (Input.GetKey(KeyCode.A))
@@ -53,6 +53,7 @@ public class PlayerScript : MonoBehaviour
                 //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
                 //inputValue = -1;
                 transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
+                spriteRenderer.flipX = true; //Byt riktning på spriten
 
             }
 

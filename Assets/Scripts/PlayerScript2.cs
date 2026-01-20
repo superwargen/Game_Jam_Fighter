@@ -28,6 +28,7 @@ public class PlayerScript2 : MonoBehaviour
         rigidbody = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
         spriteRenderer = GetComponent<SpriteRenderer>();
+        spriteRenderer.flipX = true; //Byt riktning på spriten
         audioManager = FindFirstObjectByType<AudioManager>();
     }
 
@@ -45,6 +46,7 @@ public class PlayerScript2 : MonoBehaviour
                 //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
                 //inputValue = 1;
                 transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
+                spriteRenderer.flipX = false; //Byt inte riktning på spriten
 
             }
 
@@ -53,6 +55,7 @@ public class PlayerScript2 : MonoBehaviour
                 //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
                 //inputValue = -1;
                 transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
+                spriteRenderer.flipX = true; //Byt riktning på spriten
 
             }
 
