@@ -126,7 +126,7 @@ public class PlayerScript2 : MonoBehaviour
 
         KnockbackTimer();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D collision) //Försöker stoppa buggen där spelarna rör sig av sig själva efter att ha träffat varandra
     {
         if (collision.tag == "Player") //Kolla om det är den andra spelaren spelaren kolliderar med
         {

@@ -16,6 +16,7 @@ public class PlayerScript : MonoBehaviour
     private bool knockback; //Bool som är sann när knockback är aktivt
     private AudioManager audioManager;
     //private float inputValue;
+    private bool isRunning = true;
 
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
@@ -46,6 +47,9 @@ public class PlayerScript : MonoBehaviour
                 //inputValue = 1;
                 transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
                 spriteRenderer.flipX = false; //Byt inte riktning på spriten
+                isRunning = true;
+                animator.SetBool("isRunning", isRunning);
+
             }
 
             if (Input.GetKey(KeyCode.A))
@@ -54,8 +58,13 @@ public class PlayerScript : MonoBehaviour
                 //inputValue = -1;
                 transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
                 spriteRenderer.flipX = true; //Byt riktning på spriten
+                isRunning = true;
+                animator.SetBool("isRunning", isRunning);
 
             }
+            //isRunning = false;
+            //animator.SetBool("isRunning", isRunning);
+
 
             if (canClimb)
             {
@@ -95,7 +104,6 @@ public class PlayerScript : MonoBehaviour
 
             animator.SetBool("isGrounded", isGrounded);
             animator.SetFloat("playerSpeed", Mathf.Abs(rigidbody.linearVelocityX)); //Koppla animatorns playerSpeedparameter till spelarens hastighet
-
         }
 
         KnockbackTimer();
