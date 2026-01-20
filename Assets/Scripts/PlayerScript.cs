@@ -87,7 +87,7 @@ public class PlayerScript : MonoBehaviour
                 //Utför groundcheck med hjälp av en overlapcircle placerad vid spelarens fötter
                 isGrounded = Physics2D.OverlapCircle(groundPos.position, 0.2f, groundLayer);
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
+            if (Input.GetKeyDown(KeyCode.W) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
             {
                 audioManager.Jump(); //Spela upp hoppljudet
                 rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt

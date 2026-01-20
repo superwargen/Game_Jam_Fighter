@@ -16,6 +16,7 @@ public class PlayerScript2 : MonoBehaviour
     private bool knockback; //Bool som är sann när knockback är aktivt
     private AudioManager audioManager;
     private float inputValue;
+    private bool hasJumped = false;
 
 
     //Ladder
@@ -103,20 +104,39 @@ public class PlayerScript2 : MonoBehaviour
             //Utför groundcheck med hjälp av en overlapcircle placerad vid spelarens fötter
             isGrounded = Physics2D.OverlapCircle(groundPos.position, 0.2f, groundLayer);
 
-            if (Input.GetKeyDown(KeyCode.Space) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
+            if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
             {
                 audioManager.Jump(); //Spela upp hoppljudet
                 rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
+                hasJumped = true;
             }
 
             animator.SetBool("isGrounded", isGrounded);
             animator.SetFloat("playerSpeed", Mathf.Abs(rigidbody.linearVelocityX)); //Koppla animatorns playerSpeedparameter till spelarens hastighet
+            //if (hasJumped)
+            //{
+            //    //if (isGrounded)
+            //    //{
+            //    //    rigidbody.linearVelocity = new Vector2(0, 0);
+            //    //    hasJumped = false;
 
+            //    //}
+            //}
         }
 
         KnockbackTimer();
     }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Player") //Kolla om det är den andra spelaren spelaren kolliderar med
+        {
+            rigidbody.linearVelocity = new Vector2(0,0);
+        }
+    }
+    public void Timer()
+    {
 
+    }
     public void Knockback()
     {
         knockbackTimer = knockbackTime; //Starta timern
@@ -146,14 +166,14 @@ public class PlayerScript2 : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag == "Ladder") //Kolla om det är stegen spelaren kolliderar med
-        {
-            canClimb = true; //Slå på klätterfunktionen
-            rigidbody.bodyType = RigidbodyType2D.Kinematic; //Sätt RB till kinematic
-        }
-    }
+    //private void OnTriggerEnter2D(Collider2D collision)
+    //{
+    //    if (collision.tag == "Ladder") //Kolla om det är stegen spelaren kolliderar med
+    //    {
+    //        canClimb = true; //Slå på klätterfunktionen
+    //        rigidbody.bodyType = RigidbodyType2D.Kinematic; //Sätt RB till kinematic
+    //    }
+    //}
 
     private void OnTriggerExit2D(Collider2D collision)
     {
