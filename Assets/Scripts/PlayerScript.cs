@@ -15,6 +15,7 @@ public class PlayerScript : MonoBehaviour
     public float knockbackForce = 8f; //Den kraft som spelaren kastas med hjälp av
     private bool knockback; //Bool som är sann när knockback är aktivt
     private AudioManager audioManager;
+    //private float inputValue;
 
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
@@ -37,13 +38,22 @@ public class PlayerScript : MonoBehaviour
         if (!knockback) //Ta bort spelarinput om immune är aktivt
         {
             //Ta in input
-            if (Input.GetKeyDown(KeyCode.D))
+
+            //rigidbody.linearVelocity = new Vector2(moveSpeed * Input.GetAxis("wasd"), rigidbody.linearVelocity.y); 
+            if (Input.GetKey(KeyCode.D))
             {
-                rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
+                //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
+                //inputValue = 1;
+                transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
+
             }
-            if (Input.GetKeyDown(KeyCode.A))
+
+            if (Input.GetKey(KeyCode.A))
             {
-                rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
+                //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
+                //inputValue = -1;
+                transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
+
             }
 
             if (canClimb)

@@ -3,7 +3,7 @@ using UnityEngine;
 public class PlayerScript2 : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
-    public float moveSpeed = 7f; //Spelarens hastighet
+    public float moveSpeed = 0.0005f; //Spelarens hastighet
     public float jumpForce = 1f; //Hoppkraft
     public bool isGrounded; //Bool som är sann om spelaren står på marken
     public Transform groundPos; //Den position där groundchecken utförs från
@@ -15,6 +15,8 @@ public class PlayerScript2 : MonoBehaviour
     public float knockbackForce = 8f; //Den kraft som spelaren kastas med hjälp av
     private bool knockback; //Bool som är sann när knockback är aktivt
     private AudioManager audioManager;
+    private float inputValue;
+
 
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
@@ -38,14 +40,36 @@ public class PlayerScript2 : MonoBehaviour
         {
             //Ta in input
 
-            if (Input.GetKeyDown(KeyCode.RightArrow))
+            if (Input.GetKey(KeyCode.RightArrow))
             {
-                rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
+                //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
+                //inputValue = 1;
+                transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
+
             }
-            if (Input.GetKeyDown(KeyCode.LeftArrow))
+
+            if (Input.GetKey(KeyCode.LeftArrow))
             {
-                rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
+                //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
+                //inputValue = -1;
+                transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
+
             }
+
+            //if (inputValue > 0)
+            //{
+            //    Vector3 move = transform.position; //Lagrar nuvarande position 
+            //    move.x += moveSpeed * Time.deltaTime;
+            //    transform.position = move; //Flyttar paddeln 
+            //}
+
+            //if (inputValue < 0)
+            //{
+            //    Vector3 move = transform.position; //Lagrar nuvarande position 
+            //    move.x -= moveSpeed * Time.deltaTime;
+            //    transform.position = move; //Flyttar paddeln 
+            //}
+
             if (canClimb)
             {
                 //Slå på vertikal input för klättring
