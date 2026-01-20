@@ -18,6 +18,8 @@ public class PlayerScript : MonoBehaviour
     //private float inputValue;
     private bool isRunning = false;
 
+    public bool isPlayerOne = false;
+
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
     public bool canClimb; //Boolean som blir sann när spelaren står vid en stege
@@ -41,34 +43,79 @@ public class PlayerScript : MonoBehaviour
             //Ta in input
 
             //rigidbody.linearVelocity = new Vector2(moveSpeed * Input.GetAxis("wasd"), rigidbody.linearVelocity.y); 
-            if (Input.GetKey(KeyCode.D))
+            if (isPlayerOne)
             {
-                //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
-                //inputValue = 1;
-                transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
-                spriteRenderer.flipX = false; //Byt inte riktning på spriten
-                isRunning = true;
-                animator.SetBool("isRunning", isRunning);
+                if (Input.GetKey(KeyCode.D))
+                {
+                    //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
+                    //inputValue = 1;
+                    transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
+                    spriteRenderer.flipX = false; //Byt inte riktning på spriten
+                    isRunning = true;
+                    animator.SetBool("isRunning", isRunning);
 
+                }
+
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
+                    //inputValue = -1;
+                    transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
+                    spriteRenderer.flipX = true; //Byt riktning på spriten
+                    isRunning = true;
+                    animator.SetBool("isRunning", isRunning);
+
+                }
+
+
+                else
+                {
+                    isRunning = false;
+                    animator.SetBool("isRunning", isRunning);
+
+                }
+
+                if (Input.GetKeyDown(KeyCode.W) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
+                {
+                    audioManager.Jump(); //Spela upp hoppljudet
+                    rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
+                } 
             }
 
-            else if (Input.GetKey(KeyCode.A))
+            if (!isPlayerOne)
             {
-                //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
-                //inputValue = -1;
-                transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
-                spriteRenderer.flipX = true; //Byt riktning på spriten
-                isRunning = true;
-                animator.SetBool("isRunning", isRunning);
+                if (Input.GetKey(KeyCode.RightArrow))
+                {
+                    //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
+                    //inputValue = 1;
+                    transform.position += new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
+                    spriteRenderer.flipX = false; //Byt inte riktning på spriten
+                    isRunning = true;
+                    animator.SetBool("isRunning", isRunning);
+                }
 
-            }
-            
+                else if (Input.GetKey(KeyCode.LeftArrow))
+                {
+                    //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
+                    //inputValue = -1;
+                    transform.position += new Vector3(-moveSpeed, 0, 0) * Time.deltaTime;
+                    spriteRenderer.flipX = true; //Byt riktning på spriten
+                    isRunning = true;
+                    animator.SetBool("isRunning", isRunning);
+                }
 
-            else 
-            {
-                isRunning = false;
-                animator.SetBool("isRunning", isRunning);
+                else
+                {
+                    isRunning = false;
+                    animator.SetBool("isRunning", isRunning);
 
+                }
+
+                if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
+                {
+                    audioManager.Jump(); //Spela upp hoppljudet
+                    rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
+                }
             }
 
             if (canClimb)
@@ -100,12 +147,6 @@ public class PlayerScript : MonoBehaviour
 
                 //Utför groundcheck med hjälp av en overlapcircle placerad vid spelarens fötter
                 isGrounded = Physics2D.OverlapCircle(groundPos.position, 0.2f, groundLayer);
-
-            if (Input.GetKeyDown(KeyCode.W) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
-            {
-                audioManager.Jump(); //Spela upp hoppljudet
-                rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
-            }
 
             animator.SetBool("isGrounded", isGrounded);
             animator.SetFloat("playerSpeed", Mathf.Abs(rigidbody.linearVelocityX)); //Koppla animatorns playerSpeedparameter till spelarens hastighet
