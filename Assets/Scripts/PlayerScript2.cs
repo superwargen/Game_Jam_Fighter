@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerScript : MonoBehaviour
+public class PlayerScript2 : MonoBehaviour
 {
     private Rigidbody2D rigidbody;
     public float moveSpeed = 7f; //Spelarens hastighet
@@ -29,7 +29,7 @@ public class PlayerScript : MonoBehaviour
         audioManager = FindFirstObjectByType<AudioManager>();
     }
 
- 
+
 
 
     void LateUpdate()
@@ -37,15 +37,15 @@ public class PlayerScript : MonoBehaviour
         if (!knockback) //Ta bort spelarinput om immune är aktivt
         {
             //Ta in input
-            if (Input.GetKeyDown(KeyCode.D))
+
+            if (Input.GetKeyDown(KeyCode.RightArrow))
             {
                 rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
             }
-            if (Input.GetKeyDown(KeyCode.A))
+            if (Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
             }
-
             if (canClimb)
             {
                 //Slå på vertikal input för klättring
@@ -73,8 +73,8 @@ public class PlayerScript : MonoBehaviour
                 }
             }
 
-                //Utför groundcheck med hjälp av en overlapcircle placerad vid spelarens fötter
-                isGrounded = Physics2D.OverlapCircle(groundPos.position, 0.2f, groundLayer);
+            //Utför groundcheck med hjälp av en overlapcircle placerad vid spelarens fötter
+            isGrounded = Physics2D.OverlapCircle(groundPos.position, 0.2f, groundLayer);
 
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
             {
@@ -95,7 +95,7 @@ public class PlayerScript : MonoBehaviour
         knockbackTimer = knockbackTime; //Starta timern
         knockback = true;
 
-        if(spriteRenderer.flipX) //Kolla om spriten är flippad
+        if (spriteRenderer.flipX) //Kolla om spriten är flippad
         {
             //Lägg på en kraft åt höger
             rigidbody.AddForce(transform.right * knockbackForce, ForceMode2D.Impulse);
@@ -109,11 +109,11 @@ public class PlayerScript : MonoBehaviour
 
     void KnockbackTimer()
     {
-        if(knockbackTimer > 0) //Starta timern om kbt har annat värde än 0
+        if (knockbackTimer > 0) //Starta timern om kbt har annat värde än 0
         {
             knockbackTimer -= Time.deltaTime; //Baklängestimer
         }
-        else if(knockbackTimer <= 0) //Timern har räknat ned
+        else if (knockbackTimer <= 0) //Timern har räknat ned
         {
             knockback = false; //Tillåt inte knockback
         }
@@ -121,7 +121,7 @@ public class PlayerScript : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag == "Ladder") //Kolla om det är stegen spelaren kolliderar med
+        if (collision.tag == "Ladder") //Kolla om det är stegen spelaren kolliderar med
         {
             canClimb = true; //Slå på klätterfunktionen
             rigidbody.bodyType = RigidbodyType2D.Kinematic; //Sätt RB till kinematic
@@ -136,5 +136,4 @@ public class PlayerScript : MonoBehaviour
             rigidbody.bodyType = RigidbodyType2D.Dynamic; //Resetta RB
         }
     }
-
 }
