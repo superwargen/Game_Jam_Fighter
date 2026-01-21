@@ -21,6 +21,8 @@ public class PlayerScript : MonoBehaviour
 
     public bool isPlayerOne = false;
     public Transform punchRight, punchLeft; //Position för spelarens slag
+    public float punchTime = 0.2f; //Den tid knockback är aktiv
+    private float punchTimer; //Timervariabel
 
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
@@ -86,14 +88,9 @@ public class PlayerScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Q))
                 {
-                    isPunching = true;
-                    animator.SetBool("isPunching", isPunching);
+                    Punch();
                 }
-                else
-                {
-                    isPunching = false;
-                    animator.SetBool("isPunching", isPunching);
-                }
+
             }
 
             if (!isPlayerOne)
@@ -133,15 +130,8 @@ public class PlayerScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.O))
                 {
-                    isPunching = true;
-                    animator.SetBool("isPunching", isPunching);
+                    Punch();
                 }
-                else
-                {
-                    isPunching = false;
-                    animator.SetBool("isPunching", isPunching);
-                }
-
             }
 
             if (canClimb)
@@ -180,6 +170,36 @@ public class PlayerScript : MonoBehaviour
         }
 
         KnockbackTimer();
+        PunchTimer();
+    }
+
+    public void Punch()
+    {
+        punchTimer = punchTime; //Starta timern
+        isPunching = true;
+        animator.SetBool("isPunching", isPunching);
+        //if (spriteRenderer.flipX) //Kolla om spriten är flippad
+        //{
+        //    //Lägg på en kraft åt höger
+        //    rigidbody.AddForce(transform.right * knockbackForce, ForceMode2D.Impulse);
+        //}
+        //else
+        //{
+        //    //Lägg på en kraft åt vänster
+        //    rigidbody.AddForce(-transform.right * knockbackForce, ForceMode2D.Impulse);
+        //}
+    }
+
+    void PunchTimer()
+    {
+        if (punchTimer > 0) //Starta timern om kbt har annat värde än 0
+        {
+            punchTimer -= Time.deltaTime; //Baklängestimer
+        }
+        else if (punchTimer <= 0) //Timern har räknat ned
+        {
+            isPunching = false; //Tillåt slag
+        }
     }
 
     public void Knockback()
