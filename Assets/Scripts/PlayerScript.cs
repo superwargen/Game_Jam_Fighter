@@ -17,6 +17,7 @@ public class PlayerScript : MonoBehaviour
     private AudioManager audioManager;
     //private float inputValue;
     private bool isRunning = false;
+    public bool isPunching = false;
 
     public bool isPlayerOne = false;
 
@@ -79,12 +80,23 @@ public class PlayerScript : MonoBehaviour
                 {
                     audioManager.Jump(); //Spela upp hoppljudet
                     rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
-                } 
+                }
+
+                if (Input.GetKeyDown(KeyCode.Q))
+                {
+                    isPunching = true;
+                    animator.SetBool("isPunching", isPunching);
+                }
+                else
+                {
+                    isPunching = false;
+                    animator.SetBool("isPunching", isPunching);
+                }
             }
 
             if (!isPlayerOne)
             {
-                if (Input.GetKey(KeyCode.RightArrow))
+                if (Input.GetKey(KeyCode.L))
                 {
                     //rigidbody.linearVelocity = new Vector2(moveSpeed, rigidbody.linearVelocity.y);
                     //inputValue = 1;
@@ -94,7 +106,7 @@ public class PlayerScript : MonoBehaviour
                     animator.SetBool("isRunning", isRunning);
                 }
 
-                else if (Input.GetKey(KeyCode.LeftArrow))
+                else if (Input.GetKey(KeyCode.J))
                 {
                     //rigidbody.linearVelocity = new Vector2(-moveSpeed, rigidbody.linearVelocity.y);
                     //inputValue = -1;
@@ -111,11 +123,23 @@ public class PlayerScript : MonoBehaviour
 
                 }
 
-                if (Input.GetKeyDown(KeyCode.UpArrow) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
+                if (Input.GetKeyDown(KeyCode.I) && isGrounded) //Hoppfunktion som tar hänsyn till om spelaren står på marken
                 {
                     audioManager.Jump(); //Spela upp hoppljudet
                     rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
                 }
+
+                if (Input.GetKeyDown(KeyCode.O))
+                {
+                    isPunching = true;
+                    animator.SetBool("isPunching", isPunching);
+                }
+                else
+                {
+                    isPunching = false;
+                    animator.SetBool("isPunching", isPunching);
+                }
+
             }
 
             if (canClimb)
