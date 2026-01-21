@@ -199,6 +199,8 @@ public class PlayerScript : MonoBehaviour
         else if (punchTimer <= 0) //Timern har räknat ned
         {
             isPunching = false; //Tillåt slag
+            animator.SetBool("isPunching", isPunching);
+
         }
     }
 
