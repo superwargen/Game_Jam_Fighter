@@ -19,6 +19,7 @@ public class PlayerScript : MonoBehaviour
     private bool isRunning = false;
 
     public bool isPlayerOne = false;
+    public Transform punchRight, punchLeft; //Position för spelarens slag
 
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
@@ -53,6 +54,7 @@ public class PlayerScript : MonoBehaviour
                     spriteRenderer.flipX = false; //Byt inte riktning på spriten
                     isRunning = true;
                     animator.SetBool("isRunning", isRunning);
+                    punchRight.gameObject.SetActive(false);
 
                 }
 
@@ -129,6 +131,7 @@ public class PlayerScript : MonoBehaviour
                 {
                     animator.SetBool("canClimb", canClimb); //Växla till climb-animation
                     animator.SetFloat("climbSpeed", verticalMovement); //Koppla vertmove till animationens hastighet 
+
                 }
             }
             else  //Slå av flip-funktion medan spelaren klättrar
