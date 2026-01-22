@@ -28,6 +28,7 @@ public class PlayerScript : MonoBehaviour
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
     public bool canClimb; //Boolean som blir sann när spelaren står vid en stege
+    public float PunchknockBackForce = 2f;
 
 
     void Start()
@@ -88,7 +89,9 @@ public class PlayerScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.Q) && punchTimer <= 0)
                 {
-                    Punch();
+                    punchTimer = punchTime; //Starta timern
+                    isPunching = true;
+                    animator.SetBool("isPunching", isPunching);
                 }
 
             }
@@ -130,7 +133,9 @@ public class PlayerScript : MonoBehaviour
 
                 if (Input.GetKeyDown(KeyCode.O) && punchTimer <= 0)
                 {
-                    Punch();
+                    punchTimer = punchTime; //Starta timern
+                    isPunching = true;
+                    animator.SetBool("isPunching", isPunching);
                 }
             }
 
@@ -175,9 +180,6 @@ public class PlayerScript : MonoBehaviour
 
     public void Punch()
     {
-        punchTimer = punchTime; //Starta timern
-        isPunching = true;
-        animator.SetBool("isPunching", isPunching);
         if (spriteRenderer.flipX) //Kolla om spriten är flippad
         {
             punchLeft.gameObject.SetActive(true);
@@ -215,18 +217,18 @@ public class PlayerScript : MonoBehaviour
 
     public void Knockback()
     {
-        knockbackTimer = knockbackTime; //Starta timern
-        knockback = true;
+        //knockbackTimer = knockbackTime; //Starta timern
+        //knockback = true;
 
         if(spriteRenderer.flipX) //Kolla om spriten är flippad
         {
             //Lägg på en kraft åt höger
-            rigidbody.AddForce(transform.right * knockbackForce, ForceMode2D.Impulse);
+            transform.position = new Vector3(transform.position.x + PunchknockBackForce, transform.position.y, transform.position.z);
         }
         else
         {
             //Lägg på en kraft åt vänster
-            rigidbody.AddForce(-transform.right * knockbackForce, ForceMode2D.Impulse);
+            transform.position = new Vector3(transform.position.x - PunchknockBackForce, transform.position.y, transform.position.z);
         }
     }
 
