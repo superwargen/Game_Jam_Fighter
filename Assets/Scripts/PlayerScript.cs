@@ -242,11 +242,6 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
-    private void OnTriggerStay(Collider other)
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Ladder") //Kolla om det är stegen spelaren kolliderar med

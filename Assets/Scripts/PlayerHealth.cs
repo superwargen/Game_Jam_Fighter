@@ -52,7 +52,8 @@ public class PlayerHealth : MonoBehaviour
 
             if (currHealth <= 0) //Lever spelaren?
             {
-                levelManager.Respawn(); 
+                //levelManager.Respawn(); 
+                transform.gameObject.SetActive(false);
             }
             else
             {
