@@ -26,24 +26,28 @@ public class LightningMovement : MonoBehaviour
     {
         
     }
-    private void OnTriggerEnter2D(Collider2D other)
-    {
-        if (other.gameObject.tag == "Player" && gameObject.tag == "Ligthning2")
-        {
-            //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
-            //spriteRenderer.enabled = false;
-            //collider.enabled = false;
+    //private void OnTriggerEnter2D(Collider2D other)
+    //{
+    //    if (other.gameObject.tag == "Player" && gameObject.tag == "Ligthning2")
+    //    {
+    //        //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
+    //        //spriteRenderer.enabled = false;
+    //        //collider.enabled = false;
             
-            Destroy(gameObject);
-        }
+    //        Destroy(gameObject);
+    //    }
 
-        if (other.gameObject.tag == "Player2" && gameObject.tag == "Ligthning1")
-        {
-            //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
-            //spriteRenderer.enabled = false;
-            //collider.enabled = false;
+    //    if (other.gameObject.tag == "Player2" && gameObject.tag == "Ligthning1")
+    //    {
+    //        //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
+    //        //spriteRenderer.enabled = false;
+    //        //collider.enabled = false;
 
-            Destroy(gameObject);
-        }
+    //        Destroy(gameObject);
+    //    }
+    //}
+    private void LightningDestruction()
+    {
+        Destroy(gameObject);
     }
 }
