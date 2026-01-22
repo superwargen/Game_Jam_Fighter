@@ -21,6 +21,7 @@ public class MenuScript : MonoBehaviour
 
     public void Credits()
     {
+        SceneManager.LoadScene(3); //Byt till credits
         //todo: lägg till scen för Credits och använd SceneManager för att byta till
     }
 
@@ -28,5 +29,10 @@ public class MenuScript : MonoBehaviour
     {
         Application.Quit();
         Debug.Log("Quit");
+    }
+
+    public void TitleScreen()
+    {
+        SceneManager.LoadScene(0); //Byt till title screen
     }
 }

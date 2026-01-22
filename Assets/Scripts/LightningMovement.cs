@@ -4,7 +4,7 @@ using UnityEngine;
 public class LightningMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float lightningSpeed = 3;
+    public float lightningSpeed = 1000;
 
     void Start()
     {
