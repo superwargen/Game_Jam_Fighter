@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class LightningScript : MonoBehaviour
 {
@@ -23,6 +24,7 @@ public class LightningScript : MonoBehaviour
                 Instantiate(lightningPrefab, transform.position + new Vector3(1, 0, 0), Quaternion.identity); //Instatiate(vad, vart, vilken position
                 timeOne = 0;
             }
+
         }
         if (!isHammerOne)
         {
@@ -30,7 +32,7 @@ public class LightningScript : MonoBehaviour
 
             if (Input.GetKeyDown(KeyCode.M) && timeTwo > 3)
             {
-                Instantiate(lightningPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.Euler(0,180,0)); //Instatiate(vad, vart, vilken position
+                Instantiate(lightningPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.Euler(0, 180, 0)); //Instatiate(vad, vart, vilken position
 
                 timeTwo = 0;
             }
@@ -39,6 +41,7 @@ public class LightningScript : MonoBehaviour
 
     }
 
+    
 
 
 

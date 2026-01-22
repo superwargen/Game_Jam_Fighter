@@ -26,4 +26,14 @@ public class LightningMovement : MonoBehaviour
     {
         
     }
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
+            //spriteRenderer.enabled = false;
+            //collider.enabled = false;
+            Destroy(gameObject);
+        }
+    }
 }
