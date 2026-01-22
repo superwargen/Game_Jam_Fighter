@@ -7,10 +7,12 @@ public class LightningScript : MonoBehaviour
     public float timeOne = 3;
     public float timeTwo = 3;
     public bool isHammerOne;
+    public AudioSource audioSource;
+    public AudioClip shockSound;
 
     void Start()
     {
-        
+        audioSource = GetComponent<AudioSource>();  
     }
 
     void Update()
@@ -22,7 +24,9 @@ public class LightningScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.Z) && timeOne > 3)
             {
                 Instantiate(lightningPrefab, transform.position + new Vector3(1, 0, 0), Quaternion.identity); //Instatiate(vad, vart, vilken position
+                audioSource.PlayOneShot(shockSound); 
                 timeOne = 0;
+
             }
 
         }
@@ -33,7 +37,7 @@ public class LightningScript : MonoBehaviour
             if (Input.GetKeyDown(KeyCode.M) && timeTwo > 3)
             {
                 Instantiate(lightningPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.Euler(0, 180, 0)); //Instatiate(vad, vart, vilken position
-
+                audioSource.PlayOneShot(shockSound);
                 timeTwo = 0;
             }
         }

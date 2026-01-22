@@ -7,11 +7,15 @@ using TMPro;
 public class MenuScript : MonoBehaviour
 {
     private string sceneName;
-    
+    public AudioSource audioSource;
+    public AudioClip menuMusic;
 
     private void Start()
     {
         sceneName = SceneManager.GetActiveScene().name;
+        audioSource = GetComponent<AudioSource>();
+        audioSource.PlayOneShot(menuMusic);
+
     }
 
     public void Play()
