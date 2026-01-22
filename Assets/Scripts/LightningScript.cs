@@ -3,10 +3,7 @@ using UnityEngine;
 public class LightningScript : MonoBehaviour
 {
     public GameObject lightningPrefab;
-<<<<<<< HEAD
-    public float time = 3;
-=======
->>>>>>> parent of de50bb7 (Grejer)
+    public float time;
 
     void Start()
     {
@@ -15,15 +12,12 @@ public class LightningScript : MonoBehaviour
 
     void Update()
     {
-<<<<<<< HEAD
         time += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Z) && time > 3)
-=======
-        if (Input.GetKeyDown(KeyCode.Z))
->>>>>>> parent of de50bb7 (Grejer)
+        if (Input.GetKeyDown(KeyCode.Z) && time > 4)
         {
             Instantiate(lightningPrefab, transform.position + new Vector3(1,0,0), Quaternion.identity); //Instatiate(vad, vart, vilken position
+            time = 0;
         }
 
     }
