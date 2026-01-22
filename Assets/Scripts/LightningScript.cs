@@ -3,7 +3,7 @@ using UnityEngine;
 public class LightningScript : MonoBehaviour
 {
     public GameObject lightningPrefab;
-    public float time;
+    public float time = 3;
 
     void Start()
     {
@@ -14,7 +14,7 @@ public class LightningScript : MonoBehaviour
     {
         time += Time.deltaTime;
 
-        if (Input.GetKeyDown(KeyCode.Z) && time > 4)
+        if (Input.GetKeyDown(KeyCode.Z) && time > 3)
         {
             Instantiate(lightningPrefab, transform.position + new Vector3(1,0,0), Quaternion.identity); //Instatiate(vad, vart, vilken position
             time = 0;
