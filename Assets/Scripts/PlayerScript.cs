@@ -30,6 +30,9 @@ public class PlayerScript : MonoBehaviour
     public bool canClimb; //Boolean som blir sann när spelaren står vid en stege
     public float PunchknockBackForce = 2f;
 
+    public int punchDamage = 2;
+    public int wallDamage = 20;
+
 
     void Start()
     {
@@ -257,14 +260,21 @@ public class PlayerScript : MonoBehaviour
             //transform.position = new Vector3(transform.position.x+1, transform.position.y, transform.position.z);
             Debug.Log("Test1");
 
-            transform.GetComponent<PlayerHealth>().GiveDamage(2);
+            transform.GetComponent<PlayerHealth>().GiveDamage(punchDamage);
         }
 
         if (collision.tag == "LeftPunch")
         {
             //transform.position = new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
             Debug.Log("Test2");
-            transform.GetComponent<PlayerHealth>().GiveDamage(2);
+            transform.GetComponent<PlayerHealth>().GiveDamage(punchDamage);
+        }
+
+        if (collision.tag == "WallSlam")
+        {
+            //transform.position = new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
+            Debug.Log("Test2");
+            transform.GetComponent<PlayerHealth>().GiveDamage(wallDamage);
         }
     }
 
