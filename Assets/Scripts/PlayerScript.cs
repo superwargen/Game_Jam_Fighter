@@ -23,6 +23,7 @@ public class PlayerScript : MonoBehaviour
     public Transform punchRight, punchLeft; //Position för spelarens slag
     public float punchTime = 0.2f; //Den tid knockback är aktiv
     private float punchTimer; //Timervariabel
+    private PlayerHealth playerHealth;
 
     //Ladder
     public float climbSpeed = 6f; //Klättringshastighet
@@ -180,10 +181,12 @@ public class PlayerScript : MonoBehaviour
         if (spriteRenderer.flipX) //Kolla om spriten är flippad
         {
             punchLeft.gameObject.SetActive(true);
+
         }
         else
         {
             punchRight.gameObject.SetActive(true);
+
         }
     }
 
@@ -256,12 +259,15 @@ public class PlayerScript : MonoBehaviour
         {
             //transform.position = new Vector3(transform.position.x+1, transform.position.y, transform.position.z);
             Debug.Log("Test1");
+
+            transform.GetComponent<PlayerHealth>().GiveDamage(2);
         }
 
         if (collision.tag == "LeftPunch")
         {
             //transform.position = new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
             Debug.Log("Test2");
+            transform.GetComponent<PlayerHealth>().GiveDamage(2);
         }
     }
 
