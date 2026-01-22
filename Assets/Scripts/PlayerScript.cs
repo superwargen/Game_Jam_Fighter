@@ -273,9 +273,29 @@ public class PlayerScript : MonoBehaviour
         if (collision.tag == "WallSlam")
         {
             //transform.position = new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
-            Debug.Log("Test2");
+            Debug.Log("WallSlam");
             transform.GetComponent<PlayerHealth>().GiveDamage(wallDamage);
         }
+
+        if (collision.gameObject.tag == "Player" && gameObject.tag == "Ligthning2")
+        {
+            //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
+            //spriteRenderer.enabled = false;
+            //collider.enabled = false;
+
+            transform.GetComponent<PlayerHealth>().GiveDamage(10);
+        }
+
+        if (collision.gameObject.tag == "Player2" && gameObject.tag == "Ligthning1")
+        {
+            //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
+            //spriteRenderer.enabled = false;
+            //collider.enabled = false;
+            transform.GetComponent<PlayerHealth>().GiveDamage(10);
+
+            //transform.GetComponent<PlayerHealth>().GiveDamage(lightningDamage);
+        }
+
     }
 
     private void OnTriggerExit2D(Collider2D collision)
