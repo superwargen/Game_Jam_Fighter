@@ -8,6 +8,10 @@ TagManager:
   - Ladder
   - RightPunch
   - LeftPunch
+  - WallSlam
+  - Player2
+  - Ligthning1
+  - Ligthning2
   layers:
   - Default
   - TransparentFX
