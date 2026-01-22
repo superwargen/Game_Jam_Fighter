@@ -47,7 +47,7 @@ public class PlayerHealth : MonoBehaviour
     {
         if (immuneCounter <= 0) //Ta skada enbart när vi inte är immuna
         {
-            playerScript.Knockback(); //Kalla på knockback-funktionen
+            //playerScript.Knockback(); //Kalla på knockback-funktionen
             currHealth -= damageAmount; //Dra av skadevärde från health
 
             if (currHealth <= 0) //Lever spelaren?
@@ -56,7 +56,7 @@ public class PlayerHealth : MonoBehaviour
             }
             else
             {
-                immuneCounter = immuneTime; //Sätt timern till immuntiden
+                //immuneCounter = immuneTime; //Sätt timern till immuntiden
             } 
         }
     }
