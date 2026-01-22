@@ -282,7 +282,6 @@ public class PlayerScript : MonoBehaviour
             //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
             //spriteRenderer.enabled = false;
             //collider.enabled = false;
-
             transform.GetComponent<PlayerHealth>().GiveDamage(10);
         }
 

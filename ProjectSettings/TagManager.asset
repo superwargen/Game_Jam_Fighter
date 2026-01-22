@@ -12,6 +12,8 @@ TagManager:
   - Player2
   - Ligthning1
   - Ligthning2
+  - Test1
+  - Test2
   layers:
   - Default
   - TransparentFX

@@ -7,6 +7,8 @@ public class LightningMovement : MonoBehaviour
     public float lightningSpeed = 10;
     public bool isLightningOne;
 
+    public int lightningDamage = 10;
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -33,7 +35,7 @@ public class LightningMovement : MonoBehaviour
     //        //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
     //        //spriteRenderer.enabled = false;
     //        //collider.enabled = false;
-            
+
     //        Destroy(gameObject);
     //    }
 
@@ -46,8 +48,43 @@ public class LightningMovement : MonoBehaviour
     //        Destroy(gameObject);
     //    }
     //}
-    private void LightningDestruction()
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        Destroy(gameObject);
+        if (collision.transform.tag == "Player" && gameObject.tag == "Test2") //Kolla om vi kolliderar med spelaren
+        {
+            //Sök upp healthscriptet och skicka in skadan som en parameter
+            collision.transform.GetComponent<PlayerHealth>().GiveDamage(lightningDamage);
+            Destroy(gameObject);
+        }
+
+        if (collision.transform.tag == "Player2" && gameObject.tag == "Test1") //Kolla om vi kolliderar med spelaren
+        {
+            //Sök upp healthscriptet och skicka in skadan som en parameter
+            collision.transform.GetComponent<PlayerHealth>().GiveDamage(lightningDamage);
+            Destroy(gameObject);
+        }
     }
+
+
+
+    //public void LightningDestruction(Collider2D other)
+    //{
+    //    if (other.gameObject.tag == "Player" && gameObject.tag == "Ligthning2")
+    //    {
+    //        //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
+    //        //spriteRenderer.enabled = false;
+    //        //collider.enabled = false;
+
+    //        Destroy(gameObject);
+    //    }
+
+    //    if (other.gameObject.tag == "Player2" && gameObject.tag == "Ligthning1")
+    //    {
+    //        //audioSource.PlayOneShot(deathSound); //Spelar upp deathsound
+    //        //spriteRenderer.enabled = false;
+    //        //collider.enabled = false;
+
+    //        Destroy(gameObject);
+    //    }
+    //}
 }
