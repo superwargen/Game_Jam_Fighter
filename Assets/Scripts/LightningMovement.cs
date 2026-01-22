@@ -4,12 +4,22 @@ using UnityEngine;
 public class LightningMovement : MonoBehaviour
 {
     public Rigidbody2D rb;
-    public float lightningSpeed = 3;
+    public float lightningSpeed = 10;
+    public bool isLightningOne;
 
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        rb.linearVelocity = new Vector2(lightningSpeed, 0);
+        if (isLightningOne)
+        {
+            rb.linearVelocity = new Vector2(lightningSpeed, 0);
+
+        }
+        if (!isLightningOne)
+        {
+            rb.linearVelocity = new Vector2(-lightningSpeed, 0);
+
+        }
     }
 
     void Update()

@@ -21,6 +21,8 @@ public class MenuScript : MonoBehaviour
 
     public void Credits()
     {
+        SceneManager.LoadScene(3); 
+
         //todo: lägg till scen för Credits och använd SceneManager för att byta till
     }
 
