@@ -57,7 +57,6 @@ public class PlayerScript : MonoBehaviour
                     spriteRenderer.flipX = false; //Byt inte riktning på spriten
                     isRunning = true;
                     animator.SetBool("isRunning", isRunning);
-                    punchRight.gameObject.SetActive(false);
 
                 }
 
@@ -86,7 +85,7 @@ public class PlayerScript : MonoBehaviour
                     rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
                 }
 
-                if (Input.GetKeyDown(KeyCode.Q))
+                if (Input.GetKeyDown(KeyCode.Q) && punchTimer <= 0)
                 {
                     Punch();
                 }
@@ -128,7 +127,7 @@ public class PlayerScript : MonoBehaviour
                     rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
                 }
 
-                if (Input.GetKeyDown(KeyCode.O))
+                if (Input.GetKeyDown(KeyCode.O) && punchTimer <= 0)
                 {
                     Punch();
                 }
@@ -178,16 +177,14 @@ public class PlayerScript : MonoBehaviour
         punchTimer = punchTime; //Starta timern
         isPunching = true;
         animator.SetBool("isPunching", isPunching);
-        //if (spriteRenderer.flipX) //Kolla om spriten är flippad
-        //{
-        //    //Lägg på en kraft åt höger
-        //    rigidbody.AddForce(transform.right * knockbackForce, ForceMode2D.Impulse);
-        //}
-        //else
-        //{
-        //    //Lägg på en kraft åt vänster
-        //    rigidbody.AddForce(-transform.right * knockbackForce, ForceMode2D.Impulse);
-        //}
+        if (spriteRenderer.flipX) //Kolla om spriten är flippad
+        {
+            punchLeft.gameObject.SetActive(true);
+        }
+        else
+        {
+            punchRight.gameObject.SetActive(true);
+        }
     }
 
     void PunchTimer()
@@ -200,6 +197,15 @@ public class PlayerScript : MonoBehaviour
         {
             isPunching = false; //Tillåt slag
             animator.SetBool("isPunching", isPunching);
+
+            if (spriteRenderer.flipX) //Kolla om spriten är flippad
+            {
+                punchLeft.gameObject.SetActive(false);
+            }
+            else
+            {
+                punchRight.gameObject.SetActive(false);
+            }
 
         }
     }
@@ -233,12 +239,29 @@ public class PlayerScript : MonoBehaviour
         }
     }
 
+    private void OnTriggerStay(Collider other)
+    {
+        
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag == "Ladder") //Kolla om det är stegen spelaren kolliderar med
         {
             canClimb = true; //Slå på klätterfunktionen
             rigidbody.bodyType = RigidbodyType2D.Kinematic; //Sätt RB till kinematic
+        }
+
+        if(collision.tag == "RightPunch")
+        {
+            //transform.position = new Vector3(transform.position.x+1, transform.position.y, transform.position.z);
+            Debug.Log("Test1");
+        }
+
+        if (collision.tag == "LeftPunch")
+        {
+            //transform.position = new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
+            Debug.Log("Test2");
         }
     }
 

@@ -27,7 +27,7 @@ AnimationClip:
     - time: 0.25
       value: {fileID: 21300000, guid: b9fc0fa8f60fa3b48ad28d1b3227643f, type: 3}
     - time: 0.375
-      value: {fileID: 21300000, guid: 596d9246f1b5d674aa8e9df3c3963128, type: 3}
+      value: {fileID: 21300000, guid: 111b54e2ea9c27d47a862fcd4005a81d, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -53,7 +53,7 @@ AnimationClip:
     - {fileID: 21300000, guid: 111b54e2ea9c27d47a862fcd4005a81d, type: 3}
     - {fileID: 21300000, guid: d7421407da7115b448a6b1458550aa97, type: 3}
     - {fileID: 21300000, guid: b9fc0fa8f60fa3b48ad28d1b3227643f, type: 3}
-    - {fileID: 21300000, guid: 596d9246f1b5d674aa8e9df3c3963128, type: 3}
+    - {fileID: 21300000, guid: 111b54e2ea9c27d47a862fcd4005a81d, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
@@ -78,4 +78,11 @@ AnimationClip:
   m_EulerEditorCurves: []
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
-  m_Events: []
+  m_Events:
+  - time: 0.125
+    functionName: Punch
+    data: 
+    objectReferenceParameter: {fileID: 0}
+    floatParameter: 0
+    intParameter: 0
+    messageOptions: 0
