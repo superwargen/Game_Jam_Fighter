@@ -7,7 +7,7 @@ public class LightningMovement : MonoBehaviour
     public float lightningSpeed = 10;
     public bool isLightningOne;
     public SpriteRenderer playerSprite;
-    public int lightningDamage = 10;
+    public int lightningDamage = 6;
 
     void Start()
     {

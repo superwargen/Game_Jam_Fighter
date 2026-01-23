@@ -36,7 +36,7 @@ public class LightningScript : MonoBehaviour
             //    transform.rotation = new(0, 0f, 0f, 325.335999f);
             //}
 
-            if (Input.GetKeyDown(KeyCode.Z) && timeOne > 3)
+            if (Input.GetKeyDown(KeyCode.E) && timeOne > 3)
             {
                 if (spriteRenderer.flipX)
                 {
@@ -70,7 +70,7 @@ public class LightningScript : MonoBehaviour
             //    transform.rotation = new(0, 0f, 0f, 325.335999f);
             //}
 
-            if (Input.GetKeyDown(KeyCode.M) && timeTwo > 3)
+            if (Input.GetKeyDown(KeyCode.U) && timeTwo > 3)
             {
                 if (spriteRenderer.flipX)
                 {
