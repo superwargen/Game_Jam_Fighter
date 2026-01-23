@@ -297,12 +297,12 @@ public class PlayerScript : MonoBehaviour
 
         if( collision.gameObject.tag == "Player" && gameObject.tag == "WallSave") 
         {
-            transform.position = new Vector3(-4.44000006f, -1.59000003f, 0);
+            transform.position = new Vector3(0, -2, 0);
         }
 
         if (collision.gameObject.tag == "Player2" && gameObject.tag == "WallSave")
         {
-            transform.position = new Vector3(6.9000001f, 11.9499998f, 0);
+            transform.position = new Vector3(0, -2, 0);
         }
 
     }
