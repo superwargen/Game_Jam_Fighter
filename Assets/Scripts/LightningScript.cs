@@ -24,17 +24,17 @@ public class LightningScript : MonoBehaviour
         {
             timeOne += Time.deltaTime;
 
-            if (spriteRenderer.flipX) 
-            {
-                transform.position = new Vector3(-0.629999995f, -0.279999971f, 0f);
-                transform.rotation = new(0, 0f, 0f, 34.6640015f);
-            }
+            //if (spriteRenderer.flipX) 
+            //{
+            //    transform.position = new Vector3(-0.629999995f, -0.279999971f, 0f);
+            //    transform.rotation = new(0, 0f, 0f, 34.6640015f);
+            //}
 
-            else 
-            {
-                transform.position = new Vector3(0.49000001f, -0.279999971f, 0f);
-                transform.rotation = new(0, 0f, 0f, 325.335999f);
-            }
+            //else 
+            //{
+            //    transform.position = new Vector3(0.49000001f, -0.279999971f, 0f);
+            //    transform.rotation = new(0, 0f, 0f, 325.335999f);
+            //}
 
             if (Input.GetKeyDown(KeyCode.Z) && timeOne > 3)
             {
@@ -58,17 +58,17 @@ public class LightningScript : MonoBehaviour
         {
             timeTwo += Time.deltaTime;
 
-            if (spriteRenderer.flipX)
-            {
-                transform.position = new Vector3(-0.629999995f, -0.279999971f, 0f);
-                transform.rotation = new(0, 0f, 0f, 34.6640015f);
-            }
+            //if (spriteRenderer.flipX)
+            //{
+            //    transform.position = new Vector3(-0.629999995f, -0.279999971f, 0f);
+            //    transform.rotation = new(0, 0f, 0f, 34.6640015f);
+            //}
 
-            else
-            {
-                transform.position = new Vector3(0.49000001f, -0.279999971f, 0f);
-                transform.rotation = new(0, 0f, 0f, 325.335999f);
-            }
+            //else
+            //{
+            //    transform.position = new Vector3(0.49000001f, -0.279999971f, 0f);
+            //    transform.rotation = new(0, 0f, 0f, 325.335999f);
+            //}
 
             if (Input.GetKeyDown(KeyCode.M) && timeTwo > 3)
             {
