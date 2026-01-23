@@ -275,6 +275,7 @@ public class PlayerScript : MonoBehaviour
             //transform.position = new Vector3(moveSpeed, 0, 0) * Time.deltaTime;
             Debug.Log("WallSlam");
             transform.GetComponent<PlayerHealth>().GiveDamage(wallDamage);
+            transform.position = new Vector3(0, -2, 0);
         }
 
         if (collision.gameObject.tag == "Player" && gameObject.tag == "Ligthning2")
@@ -295,15 +296,15 @@ public class PlayerScript : MonoBehaviour
             //transform.GetComponent<PlayerHealth>().GiveDamage(lightningDamage);
         }
 
-        if( collision.gameObject.tag == "Player" && gameObject.tag == "WallSave") 
-        {
-            transform.position = new Vector3(0, -2, 0);
-        }
+        //if( collision.gameObject.tag == "Player" && gameObject.tag == "WallSave") 
+        //{
+        //    transform.position = new Vector3(0, -2, 0);
+        //}
 
-        if (collision.gameObject.tag == "Player2" && gameObject.tag == "WallSave")
-        {
-            transform.position = new Vector3(0, -2, 0);
-        }
+        //if (collision.gameObject.tag == "Player2" && gameObject.tag == "WallSave")
+        //{
+        //    transform.position = new Vector3(0, -2, 0);
+        //}
 
     }
 
