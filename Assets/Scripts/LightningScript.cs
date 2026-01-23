@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Audio;
 
@@ -9,10 +10,12 @@ public class LightningScript : MonoBehaviour
     public bool isHammerOne;
     public AudioSource audioSource;
     public AudioClip shockSound;
+    public SpriteRenderer spriteRenderer;
 
     void Start()
     {
-        audioSource = GetComponent<AudioSource>();  
+        audioSource = GetComponent<AudioSource>();
+        //spriteRenderer = GetComponentInParent<SpriteRenderer>();
     }
 
     void Update()
@@ -21,12 +24,33 @@ public class LightningScript : MonoBehaviour
         {
             timeOne += Time.deltaTime;
 
+            if (spriteRenderer.flipX) 
+            {
+                transform.position = new Vector3(-0.629999995f, -0.279999971f, 0f);
+                transform.rotation = new(0, 0f, 0f, 34.6640015f);
+            }
+
+            else 
+            {
+                transform.position = new Vector3(0.49000001f, -0.279999971f, 0f);
+                transform.rotation = new(0, 0f, 0f, 325.335999f);
+            }
+
             if (Input.GetKeyDown(KeyCode.Z) && timeOne > 3)
             {
-                Instantiate(lightningPrefab, transform.position + new Vector3(1, 0, 0), Quaternion.identity); //Instatiate(vad, vart, vilken position
-                audioSource.PlayOneShot(shockSound); 
-                timeOne = 0;
+                if (spriteRenderer.flipX)
+                {
+                        Instantiate(lightningPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.Euler(0, 180, 0)); //Instatiate(vad, vart, vilken position
+                        audioSource.PlayOneShot(shockSound);
+                        timeTwo = 0;
+                }
 
+                else
+                {
+                    Instantiate(lightningPrefab, transform.position + new Vector3(1, 0, 0), Quaternion.identity); //Instatiate(vad, vart, vilken position
+                    audioSource.PlayOneShot(shockSound);
+                    timeOne = 0;
+                } 
             }
 
         }
@@ -34,11 +58,33 @@ public class LightningScript : MonoBehaviour
         {
             timeTwo += Time.deltaTime;
 
+            if (spriteRenderer.flipX)
+            {
+                transform.position = new Vector3(-0.629999995f, -0.279999971f, 0f);
+                transform.rotation = new(0, 0f, 0f, 34.6640015f);
+            }
+
+            else
+            {
+                transform.position = new Vector3(0.49000001f, -0.279999971f, 0f);
+                transform.rotation = new(0, 0f, 0f, 325.335999f);
+            }
+
             if (Input.GetKeyDown(KeyCode.M) && timeTwo > 3)
             {
-                Instantiate(lightningPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.Euler(0, 180, 0)); //Instatiate(vad, vart, vilken position
-                audioSource.PlayOneShot(shockSound);
-                timeTwo = 0;
+                if (spriteRenderer.flipX)
+                {
+                    Instantiate(lightningPrefab, transform.position + new Vector3(-1, 0, 0), Quaternion.Euler(0, 180, 0)); //Instatiate(vad, vart, vilken position
+                    audioSource.PlayOneShot(shockSound);
+                    timeTwo = 0;
+                }
+
+                else
+                {
+                    Instantiate(lightningPrefab, transform.position + new Vector3(1, 0, 0), Quaternion.identity); //Instatiate(vad, vart, vilken position
+                    audioSource.PlayOneShot(shockSound);
+                    timeTwo = 0;
+                }
             }
         }
 

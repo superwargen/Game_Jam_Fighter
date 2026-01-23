@@ -6,7 +6,7 @@ public class LightningMovement : MonoBehaviour
     public Rigidbody2D rb;
     public float lightningSpeed = 10;
     public bool isLightningOne;
-
+    public SpriteRenderer playerSprite;
     public int lightningDamage = 10;
 
     void Start()
@@ -14,12 +14,29 @@ public class LightningMovement : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         if (isLightningOne)
         {
-            rb.linearVelocity = new Vector2(lightningSpeed, 0);
+            if (playerSprite.flipX) 
+            {
+                rb.linearVelocity = new Vector2(-lightningSpeed, 0);
+            }
+
+            else 
+            {
+                rb.linearVelocity = new Vector2(lightningSpeed, 0);
+            }
+            
 
         }
         if (!isLightningOne)
         {
-            rb.linearVelocity = new Vector2(-lightningSpeed, 0);
+            if (playerSprite.flipX)
+            {
+                rb.linearVelocity = new Vector2(-lightningSpeed, 0);
+            }
+
+            else
+            {
+                rb.linearVelocity = new Vector2(lightningSpeed, 0);
+            }
 
         }
     }
