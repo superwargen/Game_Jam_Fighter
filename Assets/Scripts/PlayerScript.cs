@@ -90,7 +90,7 @@ public class PlayerScript : MonoBehaviour
                     rigidbody.AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse); //Lägg på en kraft uppåt
                 }
 
-                if (Input.GetKeyDown(KeyCode.E) && punchTimer <= 0)
+                if (Input.GetKeyDown(KeyCode.Q) && punchTimer <= 0)
                 {
                     punchTimer = punchTime; //Starta timern
                     isPunching = true;
